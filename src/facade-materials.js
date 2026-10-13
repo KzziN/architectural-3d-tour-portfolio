@@ -45,7 +45,8 @@ export function createFacadeMaterials(){
  const materials=[];
  const photo=new URLSearchParams(location.search).has('photo');
  const loader=new T.TextureLoader();
- const photoMap=(file,columns)=>{const t=loader.load(`/assets/pbr/${file}`);t.wrapS=t.wrapT=T.RepeatWrapping;t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.repeat.set(columns/32,2/32);return t};
+ const assetUrl=path=>`${import.meta.env.BASE_URL}${path}`;
+ const photoMap=(file,columns)=>{const t=loader.load(assetUrl(`assets/pbr/${file}`));t.wrapS=t.wrapT=T.RepeatWrapping;t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.repeat.set(columns/32,2/32);return t};
  const glass=(columns,seed)=>{if(photo){const m=new T.MeshStandardMaterial({color:'#ffffff',map:photoMap('facade-photo.jpg',columns),emissiveMap:photoMap('facade-photo-emit.jpg',columns),emissive:'#ffffff',emissiveIntensity:.3,metalness:.25,roughness:.3,envMapIntensity:1.2});materials.push(m);return m}const map=rooms(columns,seed);const m=new T.MeshStandardMaterial({color:'#ffffff',map,emissiveMap:map,emissive:'#ffffff',emissiveIntensity:.3,metalness:.45,roughness:.09,envMapIntensity:1.6});materials.push(m);return m};
  const front=glass(23,1),side=glass(14,3),recessed=glass(15,2),wing=glass(8,4),podium=glass(26,3);
  const frame=new T.MeshStandardMaterial({color:'#1b1a18',metalness:.85,roughness:.34,envMapIntensity:1.2});

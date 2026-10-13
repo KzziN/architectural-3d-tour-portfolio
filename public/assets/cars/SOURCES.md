@@ -1,26 +1,19 @@
-# Modelos 3D de veículos
+# 3D vehicle model notes
 
-Ferrari 458 Italia — vicent091036.
+## Ferrari 458 Italia
 
-Fonte de distribuição: https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/ferrari.glb
+Distribution source: https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/ferrari.glb
 
-Crédito original no exemplo oficial: https://threejs.org/examples/webgl_materials_car.html
+Original credit in the official example: https://threejs.org/examples/webgl_materials_car.html
 
-Modelo original: https://sketchfab.com/models/57bf6cc56931426e87494f554df1dab6
+## BMW M4 Competition M Package
 
-BMW M4 Competition M Package — SRT Performance. Licença CC BY 4.0.
+Author: SRT Performance. License: CC BY 4.0.
 
-Original: https://skfb.ly/oyM8P
+Distribution and license statement: https://github.com/coopercodes/bmwGLB
 
-Distribuição e declaração de licença: https://github.com/coopercodes/bmwGLB
+License: https://creativecommons.org/licenses/by/4.0/
 
-Licença: https://creativecommons.org/licenses/by/4.0/
+Local adaptations: physical scale, parking orientation and paint colors. Brands identify the source models only and do not imply a commercial relationship with this portfolio project.
 
-Adaptações locais: escala física, orientação de estacionamento e pinturas. Marcas identificam os modelos; não representam vínculo comercial com o empreendimento.
-
-Geometrias e texturas são compartilhadas entre clones para reduzir memória.
-
-Otimização: glTF Transform 4.5.1, união de malhas, simplificação com erro máximo relativo 0,002 e compressão Draco. Texturas limitadas a 1024 px. Ferrari sem palette para preservar material Body_Color; BMW com palette mantendo materiais texturizados e pintura. Modelos originais preservados em output/modelos-originais.
-
-Android: versões -mobile.glb simplificadas com meshoptimizer, preservando normais e UVs por erro de atributos; modelos originais e autoria mantidos.
-
+Geometry and textures are shared across clones to reduce memory usage. Mobile variants are simplified with glTF Transform and meshoptimizer while preserving normals and UVs.

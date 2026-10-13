@@ -10,6 +10,7 @@ import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
 
 const kioskProfile=new URLSearchParams(location.search).has('kiosk');
 const textureLoader=new T.TextureLoader(),geometryCache=new Map();
+const assetUrl=path=>`${import.meta.env.BASE_URL}${path}`;
 function textureCanvas(draw,size=512){const c=document.createElement('canvas');c.width=c.height=size;draw(c.getContext('2d'),size);const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.colorSpace=T.SRGBColorSpace;return t}
 function seeded(seed){return ()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}}
 const fabric=textureCanvas((ctx,s)=>{ctx.fillStyle='#c0c0ba';ctx.fillRect(0,0,s,s);const rand=seeded(7);for(let y=0;y<s;y+=2)for(let x=0;x<s;x+=2){const a=150+Math.floor(rand()*65);ctx.fillStyle=`rgb(${a},${a},${a})`;ctx.fillRect(x,y,1,2)}});
@@ -17,8 +18,8 @@ const floorMap=textureCanvas((ctx,s)=>{const r=seeded(14);ctx.fillStyle='#b8b6b0
 const asphaltMap=textureCanvas((ctx,s)=>{const r=seeded(32);ctx.fillStyle='#696a65';ctx.fillRect(0,0,s,s);for(let i=0;i<60000;i++){const a=40+r()*95;ctx.fillStyle=`rgb(${a},${a},${a})`;ctx.fillRect(r()*s,r()*s,1,1)}});asphaltMap.repeat.set(45,3);
 export async function setupRendering(scene,renderer,camera,mats){
  const kiosk=new URLSearchParams(location.search).has('kiosk');
- const load=async(name,srgb=true)=>{const t=await textureLoader.loadAsync(`/assets/pbr/${name}`);t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());if(srgb)t.colorSpace=T.SRGBColorSpace;return t};
- const [sky,plaster,pNormal,pRough,wood,wNormal,wRough]=await Promise.all([new RGBELoader().loadAsync('/assets/pbr/sky.hdr'),load('plaster.jpg'),load('plaster-normal.jpg',false),load('plaster-rough.jpg',false),load('wood.jpg'),load('wood-normal.jpg',false),load('wood-rough.jpg',false)]);
+ const load=async(name,srgb=true)=>{const t=await textureLoader.loadAsync(assetUrl(`assets/pbr/${name}`));t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());if(srgb)t.colorSpace=T.SRGBColorSpace;return t};
+ const [sky,plaster,pNormal,pRough,wood,wNormal,wRough]=await Promise.all([new RGBELoader().loadAsync(assetUrl('assets/pbr/sky.hdr')),load('plaster.jpg'),load('plaster-normal.jpg',false),load('plaster-rough.jpg',false),load('wood.jpg'),load('wood-normal.jpg',false),load('wood-rough.jpg',false)]);
  sky.mapping=T.EquirectangularReflectionMapping;scene.background=sky;scene.backgroundRotation.y=.65;scene.backgroundIntensity=.72;scene.backgroundBlurriness=.04;
  // Keep the photographic clouds at sunset; gently warm their horizon radiance.
  const sunsetSky=sky.clone(),source=sky.image.data, sunsetData=new source.constructor(source.length);
