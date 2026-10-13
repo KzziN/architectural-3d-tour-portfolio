@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+*.log
+output/
+android/
+backups/
+references/
+.unlazy/
+*.apk
+*.aab
+*.keystore

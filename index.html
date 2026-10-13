@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183346"><title>Architectural 3D Tour · Portfolio</title></head><body>
+<main id="app">
+ <div id="viewport" aria-label="Interactive 3D scene"></div>
+ <header><span class="logo-mark">ARCH 3D</span><span class="header-line"></span><span>INTERACTIVE ARCHITECTURE <b>WEBGL</b></span><button id="fullscreen" aria-label="Fullscreen">Fullscreen ↗</button></header>
+ <section class="scene-caption"><span class="eyebrow">PORTFOLIO CASE STUDY · COMMERCIAL TOWER</span><h1 id="scene-title">A real-time building tour<br>for sales presentations.</h1><p id="scene-subtitle">Explore floors, units, fit-outs and guided camera paths.</p></section>
+ <section id="tour-caption" role="status" aria-live="polite" hidden><span id="tour-caption-floor"></span><strong id="tour-caption-room"></strong><span id="tour-caption-detail"></span></section>
+ <aside id="panel">
+  <div class="panel-head"><span class="eyebrow">EXPLORE THE TOWER</span><span id="mode-label">EXTERIOR</span></div>
+  <nav class="tabs" aria-label="Modos de navegação"><button id="exterior" class="active">Building</button><button id="floors-tab">Floors</button><button id="units-tab">Units</button></nav>
+  <div id="external-panel"><h2>Architecture from<br>every angle.</h2><p>Glass facades, planted terraces and flexible commercial interiors.</p><div class="views"><button data-view="corner" class="selected">01 <span>Corner</span>↗</button><button data-view="street">02 <span>Street view</span>↗</button><button data-view="aerial">03 <span>Aerial view</span>↗</button></div><button id="enter" class="primary">Enter building <span>→</span></button><div class="metrics"><div><b>136</b><small>commercial suites</small></div><div><b>23</b><small>modeled levels</small></div><div><b>70</b><small>parking spaces</small></div><div><b>21 m²</b><small>starting at approx.</small></div></div></div>
+  <div id="inside-panel" hidden><label for="floor">FLOOR</label><div class="floor-select"><button id="floor-down" aria-label="Previous floor">−</button><select id="floor"></select><button id="floor-up" aria-label="Next floor">+</button></div><p id="floor-info"></p><label for="unit">SPACE TO VISIT</label><select id="unit"></select><div class="button-pair"><button id="visit" class="primary">Visit space →</button><button id="hall">Hall</button></div><div id="fitout"><label for="use">FIT-OUT SIMULATION</label><select id="use"><option value="mixed">Mixed environments</option><option value="office">Office</option><option value="clinic">Medical clinic</option><option value="dental">Dental clinic</option><option value="therapy">Therapy / client care</option><option value="corporate">Coworking</option><option value="meeting">Meeting room</option><option value="lounge">Reception / lounge</option><option value="retail">Retail / showroom</option><option value="cafe">Cafe / service</option></select><label class="check"><input type="checkbox" id="integrated"> Merge suites (open plan)</label><button id="duplex" hidden>Go up to mezzanine ↑</button></div><button id="walk">Walk in first person</button><small class="walk-note">WASD or arrows to walk · drag to look · Esc releases the mouse</small></div>
+  <div class="environment"><button id="day" class="active">Day</button><button id="sunset">Sunset</button><button id="night">Night</button><span></span><button id="empty">Empty</button><button id="furnished" class="active">Furnished</button></div>
+  <button id="references">Project notes ↗</button><p class="disclosure">Portfolio prototype · procedural geometry<br>Approximate dimensions and proposed interiors.</p>
+ </aside>
+ <div id="mini" hidden><div><span id="mini-title">PLAN</span><button id="plan-open">Expand ↗</button></div><canvas id="minimap" width="290" height="175"></canvas><small>● Your position · click to visit a space</small></div>
+ <div id="touch" hidden><button data-move="w" aria-label="Forward">↑</button><button data-move="a" aria-label="Left">←</button><button data-move="s" aria-label="Back">↓</button><button data-move="d" aria-label="Right">→</button></div>
+ <footer><div id="hint">Drag to orbit <i>·</i> Scroll to zoom <i>·</i> Right-click to pan</div><div class="tour-controls"><button id="leave-building" hidden>Exit building ↗</button><button id="tour">Start guided tour</button><button id="record">Record video</button><span id="status">WEBGL · REAL TIME</span></div></footer>
+ <div id="tooltip" hidden></div><div id="toast" role="status" hidden></div><div id="crosshair" hidden>+</div>
+<section id="humanized-entry" aria-label="Choose an isometric floor-plan concept" hidden>
+ <div class="humanized-shell">
+  <div class="humanized-head"><div><span class="eyebrow">BUILDING ENTRY</span><h2>Choose a layout to present</h2><p>Before entering the 3D tour, review a sales-friendly isometric layout.</p></div><button id="humanized-close">Back to exterior</button></div>
+  <div class="humanized-layout">
+   <article class="humanized-preview"><img id="humanized-big" src="/assets/humanized/modelo-4-mix-clean.png" alt="Selected 3D isometric floor plan"><div><h3 id="humanized-title">Commercial mix</h3><p id="humanized-desc">Combines offices, clinics, pantry support and meeting spaces. Best option to present layout flexibility.</p><button id="humanized-go" class="primary">Open 3D model →</button></div></article>
+   <div id="humanized-options" class="humanized-options" aria-label="Modelos de ambiente"></div>
+  </div>
+ </div>
+</section>
+<section id="humanized-detail" aria-label="Expanded 3D isometric model" hidden>
+ <button id="humanized-detail-back">← choose another layout</button>
+ <img id="humanized-detail-img" alt="Expanded 3D isometric model">
+ <div class="humanized-detail-caption"><span class="eyebrow">3D ISOMETRIC MODEL</span><h2 id="humanized-detail-title">Commercial mix</h2><p id="humanized-detail-desc">Presentation-ready layout concept.</p></div>
+</section>
+ <dialog id="ref-dialog"><div class="dialog-header"><h2>Project notes</h2><button id="close-dialog" aria-label="Close">Close ×</button></div><p>This public portfolio version uses procedural geometry and neutral assets. Client names, original plans, addresses, internal notes and kiosk deployment files were removed.</p><p>The demo shows a real-time WebGL workflow: floor selection, unit navigation, fit-out simulations, guided camera paths, responsive UI and offline-ready static assets.</p><p>3D cars: Ferrari 458 Italia by vicent091036 (<a href="https://sketchfab.com/models/57bf6cc56931426e87494f554df1dab6" target="_blank" rel="noopener">source model</a>), distributed in the official Three.js example. BMW M4 Competition M Package by SRT Performance (<a href="https://skfb.ly/oyM8P" target="_blank" rel="noopener">source model</a>), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.</p></dialog>
+</main><script type="module" src="/src/main.js"></script></body></html>

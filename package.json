@@ -1,0 +1,33 @@
+{
+  "name": "architectural-3d-tour-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive WebGL architectural tour built with Three.js and Vite.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4317",
+    "build": "vite build --base ./",
+    "preview": "vite preview --host 127.0.0.1 --port 4317"
+  },
+  "keywords": [
+    "threejs",
+    "webgl",
+    "architecture",
+    "interactive-3d",
+    "portfolio",
+    "vite"
+  ],
+  "author": "Antonio Mendes",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.180.0",
+    "vite": "^7.1.7"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "@playwright/test": "^1.63.0",
+    "draco3dgltf": "^1.5.7",
+    "meshoptimizer": "^1.3.0"
+  }
+}
